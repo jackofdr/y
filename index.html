@@ -2,8 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PokerUZ — Покерный клуб № 1 в Узбекистане</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0808" />
+  <title>PokerUZ — Лучший онлайн покер-рум для игроков Узбекистана</title>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -22,539 +23,430 @@
     <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=1596345781609399&ev=PageView&noscript=1"/>
   </noscript>
-  <!-- End Meta Pixel Code -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,700;1,9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ─── TOKENS ─────────────────────────────────────────────── */
     :root {
-      /* Void — deep near-black background */
-      --void:       #08080b;
-      --void-2:     #0f0f14;
-      --surface:    #16161e;
-      --surface-hi: #1f1f2a;
+      --ink:            #0a0808;
+      --ink-2:          #12100d;
+      --surface:        #1c1815;
 
-      /* Brand red — primary accent (PokerStars/GG vibe) */
-      --red:        #e12a3e;
-      --red-hi:     #f74a5e;
-      --red-deep:   #9a1a2a;
-      --red-glow:   rgba(225, 42, 62, 0.5);
-      --red-line:   rgba(225, 42, 62, 0.18);
-      --red-dim:    rgba(225, 42, 62, 0.35);
+      --gold:           #c9a94b;
+      --gold-hi:        #e6c777;
+      --gold-lo:        #8b7a34;
+      --gold-line:      rgba(201, 169, 75, 0.2);
+      --gold-dim:       rgba(201, 169, 75, 0.1);
 
-      /* Restrained gold — only for playing card polygraphy */
-      --gold:       #c9a94b;
-      --gold-dim:   rgba(201, 169, 75, 0.32);
+      --parchment:      #f0e5c8;
+      --parchment-mute: #96896b;
+      --parchment-dim:  #5a5140;
+      --parchment-line: rgba(240, 229, 200, 0.08);
 
-      /* Text */
-      --ivory:      #f2ede0;
-      --ivory-mute: #86816f;
-      --ivory-line: rgba(242, 237, 224, 0.09);
-      --ivory-dim:  rgba(242, 237, 224, 0.35);
+      --felt:           #0e3d24;
+      --felt-hi:        #175a37;
+      --felt-lo:        #062916;
+      --felt-line:      #c9a94b;
 
-      /* Card polygraphy */
-      --card-paper: #f4ecd6;
-      --card-ink:   #14100a;
-      --oxblood:    #9c1e2b;
+      --wine:           #8a1e2b;
+      --wine-hi:        #b8283a;
 
-      --live:       #4ade80;
+      --card-paper:     #f4ecd6;
+      --card-ink:       #14100a;
 
-      --f-display: 'Fraunces', Georgia, serif;
-      --f-body:    'Inter', system-ui, -apple-system, sans-serif;
+      --live:           #6ee08a;
+
+      --f-display: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+      --f-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+      --edge:          56px;
+      --edge-md:       32px;
+      --edge-sm:       20px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
 
     body {
       font-family: var(--f-body);
-      background: var(--void);
-      color: var(--ivory);
+      background: var(--ink);
+      color: var(--parchment);
       min-height: 100dvh;
       overflow-x: hidden;
-      line-height: 1.5;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      animation: pageIn 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* ─── AMBIENT: red brand glows on void ───────────────────── */
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* Ambient warm glows */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background:
-        radial-gradient(ellipse 55% 45% at 82% 22%, rgba(225, 42, 62, 0.14) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 45% at 15% 85%, rgba(225, 42, 62, 0.08) 0%, transparent 55%),
-        radial-gradient(ellipse 90% 60% at 50% 50%, rgba(31, 31, 42, 0.6) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+        radial-gradient(ellipse 55% 45% at 82% 25%, rgba(201, 169, 75, 0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 35% at 18% 75%, rgba(201, 169, 75, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 100% 65% at 50% 55%, rgba(28, 24, 21, 0.55) 0%, transparent 75%);
+      pointer-events: none; z-index: 0;
     }
 
-    /* ─── AMBIENT: fine diagonal grain ───────────────────────── */
+    /* Vertical light streaks (like reference bg) */
     body::after {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image:
-        repeating-linear-gradient(45deg,  rgba(242, 237, 224, 0.007) 0, rgba(242, 237, 224, 0.007) 1px, transparent 1px, transparent 26px),
-        repeating-linear-gradient(-45deg, rgba(242, 237, 224, 0.007) 0, rgba(242, 237, 224, 0.007) 1px, transparent 1px, transparent 26px);
-      pointer-events: none;
-      z-index: 0;
+        linear-gradient(90deg,
+          transparent 0%,
+          rgba(201, 169, 75, 0.02) 20%,
+          transparent 22%,
+          transparent 45%,
+          rgba(201, 169, 75, 0.03) 55%,
+          transparent 57%,
+          transparent 78%,
+          rgba(201, 169, 75, 0.02) 85%,
+          transparent 87%),
+        repeating-linear-gradient(90deg, rgba(240, 229, 200, 0.004) 0, rgba(240, 229, 200, 0.004) 1px, transparent 1px, transparent 4px);
+      pointer-events: none; z-index: 0;
     }
 
     .page {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
       min-height: 100dvh;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
     }
 
     /* ─── HEADER ─────────────────────────────────────────────── */
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px 48px;
-      border-bottom: 1px solid var(--ivory-line);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-    }
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--red-dim);
-      border-radius: 50%;
-      color: var(--red);
-      font-size: 15px;
-      line-height: 1;
-      background: radial-gradient(circle at 30% 30%, rgba(225, 42, 62, 0.22), transparent 70%);
-      box-shadow: 0 0 20px rgba(225, 42, 62, 0.25), inset 0 0 8px rgba(225, 42, 62, 0.15);
-    }
-    .logo-text {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: 23px;
-      letter-spacing: 0.005em;
-      color: var(--ivory);
-    }
-    .logo-text .accent {
-      color: var(--red);
-      font-style: italic;
-      font-weight: 800;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 22px var(--edge);
+      border-bottom: 1px solid var(--parchment-line);
     }
 
     .live {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--f-body);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ivory-mute);
+      display: flex; align-items: center; gap: 12px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--parchment-mute);
     }
     .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
+      width: 6px; height: 6px; border-radius: 50%;
       background: var(--live);
-      box-shadow: 0 0 12px var(--live), 0 0 0 3px rgba(74, 222, 128, 0.14);
-      animation: pulse 2.4s ease-in-out infinite;
+      box-shadow: 0 0 10px var(--live), 0 0 0 3px rgba(110, 224, 138, 0.12);
+      animation: pulse 2.6s ease-in-out infinite;
       flex-shrink: 0;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.55; transform: scale(1.3); }
+      50%      { opacity: 0.6; transform: scale(1.3); }
     }
 
     /* ─── HERO ───────────────────────────────────────────────── */
     .hero {
       flex: 1;
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 72px;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 60px;
       align-items: center;
-      max-width: 1240px;
+      max-width: 1320px;
       width: 100%;
       margin: 0 auto;
-      padding: 64px 48px 40px;
+      padding: 72px var(--edge) 60px;
     }
 
-    .hero-copy { max-width: 580px; }
+    .hero-copy { max-width: 580px; position: relative; }
 
-    /* Eyebrow */
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-family: var(--f-body);
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 34px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.34em; text-transform: uppercase;
+      color: var(--gold-hi);
+      margin-bottom: 40px;
+      display: flex; align-items: center; gap: 14px;
     }
-    .eyebrow::before,
-    .eyebrow::after {
-      content: '';
-      width: 28px;
-      height: 1px;
-      background: var(--red-dim);
+    .eyebrow::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--gold-line);
     }
 
-    /* Headline */
     .headline {
       font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(46px, 6.6vw, 88px);
-      line-height: 0.98;
-      letter-spacing: -0.022em;
-      color: var(--ivory);
-      margin-bottom: 26px;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-weight: 400;
+      font-size: clamp(50px, 6.8vw, 88px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--parchment);
+      margin-bottom: 30px;
     }
     .headline em {
       display: block;
       font-style: italic;
-      font-weight: 900;
-      color: var(--red);
-      font-variation-settings: "opsz" 144, "SOFT" 60;
-      text-shadow: 0 0 40px rgba(225, 42, 62, 0.3);
+      color: var(--gold-hi);
+      letter-spacing: -0.015em;
     }
 
-    /* Lede */
     .lede {
-      font-family: var(--f-body);
-      font-size: 16.5px;
-      line-height: 1.7;
-      color: var(--ivory-mute);
-      margin-bottom: 40px;
+      font-size: 17px;
+      line-height: 1.68;
+      color: var(--parchment-mute);
+      margin-bottom: 44px;
       max-width: 480px;
     }
-    .lede strong {
-      color: var(--ivory);
-      font-weight: 500;
-    }
+    .lede strong { color: var(--parchment); font-weight: 500; }
 
-    /* Ornament divider */
-    .ornament {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 34px;
-      max-width: 260px;
-    }
-    .ornament-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--ivory-line) 30%, var(--ivory-line) 70%, transparent);
-    }
-    .ornament-suit {
-      font-size: 10px;
-      line-height: 1;
-    }
-    .ornament-suit.spade,
-    .ornament-suit.club  { color: var(--ivory-dim); }
-    .ornament-suit.heart,
-    .ornament-suit.diamond { color: var(--red); }
-
-    /* CTA */
     .cta-block {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
+      display: flex; flex-direction: column;
+      align-items: flex-start; gap: 18px;
     }
 
     .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      display: inline-flex; align-items: center; justify-content: center;
       gap: 12px;
-      background: linear-gradient(180deg, #ee3a52 0%, #e12a3e 45%, #b91a30 100%);
-      color: #fff;
+      background: linear-gradient(180deg, #d6b356 0%, #c9a94b 50%, #96803a 100%);
+      color: #14100a;
       font-family: var(--f-body);
-      font-weight: 700;
-      font-size: 15.5px;
-      letter-spacing: 0.02em;
-      padding: 18px 42px;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
+      font-weight: 700; font-size: 15px;
+      letter-spacing: 0.04em;
+      padding: 20px 44px;
+      border-radius: 3px;
+      border: none; cursor: pointer;
       text-decoration: none;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.28),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
-        0 0 0 1px rgba(247, 74, 94, 0.45),
-        0 14px 36px rgba(225, 42, 62, 0.42),
-        0 4px 16px rgba(0, 0, 0, 0.6);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-      min-width: 340px;
+        inset 0 1px 0 rgba(255, 245, 210, 0.35),
+        inset 0 -1px 0 rgba(50, 30, 5, 0.25),
+        0 0 0 1px rgba(230, 199, 119, 0.35),
+        0 18px 44px rgba(201, 169, 75, 0.25),
+        0 6px 20px rgba(0, 0, 0, 0.55);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      min-width: 320px; min-height: 56px;
     }
     .cta:hover {
       transform: translateY(-1.5px);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.32),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
-        0 0 0 1px rgba(247, 74, 94, 0.7),
-        0 20px 48px rgba(225, 42, 62, 0.55),
-        0 6px 22px rgba(0, 0, 0, 0.6);
+        inset 0 1px 0 rgba(255, 245, 210, 0.4),
+        inset 0 -1px 0 rgba(50, 30, 5, 0.25),
+        0 0 0 1px rgba(230, 199, 119, 0.55),
+        0 26px 54px rgba(201, 169, 75, 0.4),
+        0 8px 26px rgba(0, 0, 0, 0.6);
     }
     .cta:active { transform: translateY(0); }
+    .cta:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
 
-    .cta-tg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
+    .cta-tg { width: 18px; height: 18px; flex-shrink: 0; }
 
     .cta-note {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12.5px;
-      color: var(--ivory-mute);
+      display: flex; align-items: baseline; gap: 10px;
+      font-size: 13px; color: var(--parchment-mute);
       letter-spacing: 0.02em;
     }
     .cta-note-mark {
-      color: var(--red);
-      font-size: 9px;
-      line-height: 1;
+      color: var(--gold-hi);
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 15px; line-height: 1;
     }
 
     /* ─── HERO VISUAL ────────────────────────────────────────── */
     .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 700px;
+      perspective: 1400px;
     }
 
-    /* Red brand glow behind cards */
-    .hero-visual::before {
-      content: '';
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 45% 40%, rgba(225, 42, 62, 0.25) 0%, rgba(225, 42, 62, 0.08) 35%, transparent 70%);
-      z-index: 0;
-      pointer-events: none;
-      filter: blur(4px);
-    }
-    /* Subtle ring */
-    .hero-visual::after {
-      content: '';
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      border-radius: 50%;
-      border: 1px solid var(--red-line);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .card-stage {
+    /* Phone */
+    .phone {
+      width: 320px;
+      height: auto;
       position: relative;
-      width: 380px;
-      height: 480px;
-      z-index: 1;
-    }
-
-    .playing-card {
-      position: absolute;
-      transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.5, 1);
+      z-index: 3;
+      transform: rotateY(-7deg) rotateX(1.5deg) rotate(-1deg);
+      transform-style: preserve-3d;
       filter:
-        drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7))
-        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5))
-        drop-shadow(0 0 40px rgba(225, 42, 62, 0.12));
+        drop-shadow(0 60px 60px rgba(0, 0, 0, 0.75))
+        drop-shadow(0 24px 32px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 0 60px rgba(201, 169, 75, 0.08));
     }
 
-    .playing-card.back-card {
-      top: 60px;
+    /* Physical aces bottom-left */
+    .aces {
+      position: absolute;
+      bottom: 40px;
       left: 20px;
-      transform: rotate(-13deg);
       width: 220px;
-    }
-    .playing-card.front-card {
-      top: 30px;
-      left: 155px;
-      transform: rotate(9deg);
-      width: 245px;
-      z-index: 2;
+      z-index: 4;
+      transform: rotate(-14deg);
+      filter:
+        drop-shadow(0 24px 30px rgba(0, 0, 0, 0.7))
+        drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
     }
 
-    .card-stage:hover .front-card {
-      transform: rotate(5deg) translateY(-14px);
-    }
-    .card-stage:hover .back-card {
-      transform: rotate(-17deg) translateY(-6px) translateX(-10px);
-    }
-
-    /* Chip stack detail */
-    .chip-detail {
+    /* Physical chips bottom-right */
+    .chips-stack {
       position: absolute;
       bottom: 30px;
-      right: 20px;
-      width: 90px;
-      z-index: 3;
-      opacity: 0.9;
-      filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.65));
+      right: 10px;
+      width: 220px;
+      z-index: 4;
+      filter:
+        drop-shadow(0 30px 36px rgba(0, 0, 0, 0.75))
+        drop-shadow(0 10px 16px rgba(0, 0, 0, 0.5));
     }
 
     /* ─── STATS ──────────────────────────────────────────────── */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      max-width: 1080px;
+      max-width: 1120px;
       width: 100%;
       margin: 0 auto;
-      padding: 30px 48px 32px;
-      border-top: 1px solid var(--ivory-line);
-      border-bottom: 1px solid var(--ivory-line);
+      padding: 40px var(--edge);
+      border-top: 1px solid var(--parchment-line);
+      border-bottom: 1px solid var(--parchment-line);
     }
-
     .stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 4px 20px;
-      position: relative;
-      text-align: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; padding: 4px 24px;
+      position: relative; text-align: center;
     }
     .stat + .stat::before {
       content: '';
-      position: absolute;
-      left: 0;
-      top: 20%;
-      bottom: 20%;
-      width: 1px;
-      background: var(--ivory-line);
+      position: absolute; left: 0; top: 18%; bottom: 18%;
+      width: 1px; background: var(--parchment-line);
     }
-
     .stat-value {
       font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 400;
+      font-size: clamp(38px, 4.6vw, 54px);
       line-height: 1;
-      color: var(--ivory);
+      color: var(--parchment);
       letter-spacing: -0.01em;
-      font-variation-settings: "opsz" 144;
-      display: inline-flex;
-      align-items: baseline;
-      gap: 6px;
     }
-    .stat-value::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--red);
-      align-self: center;
-      box-shadow: 0 0 8px var(--red-glow);
-      flex-shrink: 0;
+    .stat-value .amp {
+      color: var(--gold-hi); font-style: italic;
+      display: inline-block; margin: 0 -2px;
     }
     .stat-label {
-      font-family: var(--f-body);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ivory-mute);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--parchment-mute);
     }
 
-    /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
       text-align: center;
-      padding: 22px 20px;
-      font-size: 10.5px;
-      color: rgba(134, 129, 111, 0.5);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      padding: 26px 20px calc(26px + env(safe-area-inset-bottom));
+      font-size: 10px; font-weight: 500;
+      color: var(--parchment-dim);
+      letter-spacing: 0.28em; text-transform: uppercase;
     }
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 960px) {
-      header { padding: 18px 24px; }
+    @media (max-width: 1024px) {
+      .hero {
+        gap: 44px;
+        padding: 56px var(--edge-md) 56px;
+      }
+      .phone { width: 280px; }
+      .aces { width: 190px; bottom: 30px; left: 10px; }
+      .chips-stack { width: 190px; bottom: 20px; right: 0; }
+      .hero-visual { min-height: 620px; }
+    }
 
+    @media (max-width: 900px) {
+      header { padding: 18px var(--edge-md); }
       .hero {
         grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 32px 24px 48px;
+        gap: 44px;
+        padding: 36px var(--edge-md) 52px;
         text-align: left;
       }
       .hero-copy { max-width: none; }
       .hero-visual {
         order: -1;
-        min-height: 320px;
+        min-height: 560px;
       }
-      .hero-visual::before { width: 400px; height: 400px; }
-      .hero-visual::after  { width: 320px; height: 320px; }
-
-      .card-stage {
-        width: 300px;
-        height: 340px;
-        transform: scale(0.88);
+      .phone {
+        width: 280px;
+        transform: rotateY(-5deg) rotateX(1deg) rotate(-1deg);
       }
-      .playing-card.back-card { top: 40px; left: 10px; width: 175px; }
-      .playing-card.front-card { top: 20px; left: 115px; width: 195px; }
-      .chip-detail { bottom: 15px; right: 10px; width: 70px; }
+      .aces { width: 170px; bottom: 32px; left: 6px; }
+      .chips-stack { width: 180px; bottom: 24px; right: 0; }
 
-      .headline { font-size: clamp(38px, 8.5vw, 60px); }
-      .cta { min-width: 100%; }
+      .eyebrow { margin-bottom: 30px; }
+      .headline { font-size: clamp(42px, 8.6vw, 62px); margin-bottom: 26px; }
+      .lede { font-size: 16px; margin-bottom: 36px; }
+      .cta { min-width: 100%; padding: 19px 28px; }
       .cta-block { align-items: stretch; }
-      .ornament { max-width: 100%; }
 
-      .stats {
-        grid-template-columns: repeat(3, 1fr);
-        padding: 24px 20px;
-      }
-      .stat { padding: 4px 8px; }
+      .stats { padding: 32px var(--edge-md); }
+      .stat { padding: 4px 12px; gap: 10px; }
     }
 
-    @media (max-width: 520px) {
-      header { padding: 16px 20px; }
-      .logo-text { font-size: 20px; }
+    @media (max-width: 640px) {
+      header { padding: 16px var(--edge-sm); }
       .live-label { display: none; }
 
-      .hero { padding: 24px 20px 40px; }
-      .hero-visual { min-height: 280px; }
-      .hero-visual::before { width: 320px; height: 320px; }
-      .hero-visual::after  { width: 260px; height: 260px; }
-      .card-stage { transform: scale(0.78); }
-
-      .eyebrow {
-        font-size: 9.5px;
-        letter-spacing: 0.2em;
-        margin-bottom: 24px;
+      .hero {
+        padding: 28px var(--edge-sm) 44px;
+        gap: 36px;
       }
-      .eyebrow::before, .eyebrow::after { width: 18px; }
-      .lede { font-size: 15.5px; margin-bottom: 32px; }
-      .cta { padding: 17px 28px; font-size: 15px; }
+      .hero-visual { min-height: 500px; }
+      .phone {
+        width: 250px;
+        transform: rotateY(-4deg) rotateX(0.5deg) rotate(-1deg);
+      }
+      .aces {
+        width: 140px;
+        bottom: 22px;
+        left: -4px;
+        transform: rotate(-12deg);
+      }
+      .chips-stack {
+        width: 150px;
+        bottom: 14px;
+        right: -6px;
+      }
 
+      .eyebrow { font-size: 9.5px; letter-spacing: 0.28em; margin-bottom: 26px; }
+      .eyebrow::before { width: 20px; }
+      .headline { font-size: clamp(38px, 10.2vw, 54px); margin-bottom: 22px; line-height: 1.02; }
+      .lede { font-size: 15.5px; margin-bottom: 32px; }
+      .cta { padding: 17px 24px; font-size: 14.5px; }
+
+      .stats { padding: 26px var(--edge-sm); }
+      .stat { padding: 4px 6px; gap: 8px; }
+      .stat-value { font-size: 30px; }
+      .stat-label { font-size: 8.5px; letter-spacing: 0.2em; }
+    }
+
+    @media (max-width: 400px) {
+      .hero { padding: 24px 16px 40px; gap: 32px; }
+      .hero-visual { min-height: 440px; }
+      .phone {
+        width: 220px;
+        transform: rotateY(-3deg) rotate(-0.5deg);
+      }
+      .aces { width: 125px; bottom: 18px; left: -8px; }
+      .chips-stack { width: 135px; bottom: 10px; right: -8px; }
+
+      .headline { font-size: 34px; margin-bottom: 20px; }
+      .lede { font-size: 15px; margin-bottom: 28px; }
+      .cta { padding: 16px 22px; font-size: 14px; min-height: 52px; }
+
+      .stats { padding: 22px 14px; }
+      .stat { padding: 4px 4px; gap: 6px; }
       .stat-value { font-size: 26px; }
-      .stat-value::before { width: 4px; height: 4px; }
-      .stat-label { font-size: 9px; letter-spacing: 0.14em; }
-      .stat { padding: 4px 4px; gap: 4px; }
+      .stat-label { font-size: 8px; letter-spacing: 0.16em; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -562,6 +454,7 @@
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
+      body { animation: none; opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -571,10 +464,6 @@
 
     <!-- ── HEADER ── -->
     <header>
-      <a href="#" class="logo">
-        <span class="logo-mark">♠</span>
-        <span class="logo-text">Poker<span class="accent">UZ</span></span>
-      </a>
       <div class="live">
         <span class="live-dot"></span>
         <span class="live-label">За столами сейчас</span>
@@ -598,15 +487,6 @@
           Приватный покерный клуб для игроков из Узбекистана. <strong>Живые столы, честная раздача</strong> и мгновенный вход через Telegram.
         </p>
 
-        <div class="ornament" aria-hidden="true">
-          <span class="ornament-line"></span>
-          <span class="ornament-suit spade">♠</span>
-          <span class="ornament-suit heart">♥</span>
-          <span class="ornament-suit diamond">♦</span>
-          <span class="ornament-suit club">♣</span>
-          <span class="ornament-line"></span>
-        </div>
-
         <div class="cta-block">
           <a
             href="https://t.me/+K7rSM6HfE6I5MzUy"
@@ -616,166 +496,501 @@
             onclick="fbq('track','Lead')"
           >
             <svg class="cta-tg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22.265 2.428a1.5 1.5 0 0 0-1.52-.21L2.095 9.54a1.5 1.5 0 0 0 .06 2.79l4.34 1.46 1.56 5.3a.5.5 0 0 0 .84.19l2.56-2.46 4.63 3.58a1.5 1.5 0 0 0 2.38-.9l3-16a1.5 1.5 0 0 0-.2-1.07z" fill="#fff"/>
+              <path d="M22.265 2.428a1.5 1.5 0 0 0-1.52-.21L2.095 9.54a1.5 1.5 0 0 0 .06 2.79l4.34 1.46 1.56 5.3a.5.5 0 0 0 .84.19l2.56-2.46 4.63 3.58a1.5 1.5 0 0 0 2.38-.9l3-16a1.5 1.5 0 0 0-.2-1.07z" fill="#14100a"/>
             </svg>
             Войти через Telegram
           </a>
           <span class="cta-note">
-            <span class="cta-note-mark">◆</span>
+            <span class="cta-note-mark">&sect;</span>
             Бесплатный вход · Игроки уже за столом
           </span>
         </div>
       </div>
 
-      <!-- Visual column -->
+      <!-- Visual column: Phone + physical cards + physical chips -->
       <div class="hero-visual" aria-hidden="true">
-        <div class="card-stage">
 
-          <!-- ── Back card: Ace of Hearts ── -->
-          <svg class="playing-card back-card" viewBox="0 0 220 308" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="paperBack" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#f7efd8"/>
-                <stop offset="1" stop-color="#ede3c5"/>
-              </linearGradient>
-            </defs>
-            <rect x="0.5" y="0.5" width="219" height="307" rx="14" fill="url(#paperBack)" stroke="rgba(20,16,10,0.14)" stroke-width="0.5"/>
-            <rect x="9" y="9" width="202" height="290" rx="10" fill="none" stroke="#c9a94b" stroke-width="0.5" opacity="0.35"/>
+        <!-- ═══════ iPhone mockup ═══════ -->
+        <svg class="phone" viewBox="0 0 340 700" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="frameGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3a3a3d"/>
+              <stop offset="0.5" stop-color="#1c1c1e"/>
+              <stop offset="1" stop-color="#0f0f10"/>
+            </linearGradient>
+            <linearGradient id="frameHi" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,255,255,0.14)"/>
+              <stop offset="0.4" stop-color="rgba(255,255,255,0)"/>
+              <stop offset="1" stop-color="rgba(255,255,255,0.05)"/>
+            </linearGradient>
+            <radialGradient id="feltGrad" cx="0.5" cy="0.5" r="0.65">
+              <stop offset="0" stop-color="#175a37"/>
+              <stop offset="0.6" stop-color="#0e3d24"/>
+              <stop offset="1" stop-color="#062916"/>
+            </radialGradient>
+            <linearGradient id="joinBtn" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e6c777"/>
+              <stop offset="0.5" stop-color="#c9a94b"/>
+              <stop offset="1" stop-color="#8b7a34"/>
+            </linearGradient>
+            <radialGradient id="avatarG" cx="0.35" cy="0.3" r="0.8">
+              <stop offset="0" stop-color="#5a4a3c"/>
+              <stop offset="1" stop-color="#241c14"/>
+            </radialGradient>
+            <clipPath id="screenClip">
+              <rect x="10" y="14" width="320" height="672" rx="42"/>
+            </clipPath>
+          </defs>
 
-            <!-- Corner index top-left -->
-            <text x="18" y="42" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="900" fill="#9c1e2b">A</text>
-            <path d="M 27 52 C 24 49 20 49 20 53 C 20 56 27 62 27 62 C 27 62 34 56 34 53 C 34 49 30 49 27 52 Z" fill="#9c1e2b"/>
+          <!-- ─ Phone body ─ -->
+          <rect x="0" y="0" width="340" height="700" rx="50" fill="url(#frameGrad)"/>
+          <rect x="0" y="0" width="340" height="700" rx="50" fill="url(#frameHi)"/>
 
-            <!-- Corner index bottom-right (rotated) -->
-            <g transform="rotate(180 110 154)">
-              <text x="18" y="42" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="900" fill="#9c1e2b">A</text>
-              <path d="M 27 52 C 24 49 20 49 20 53 C 20 56 27 62 27 62 C 27 62 34 56 34 53 C 34 49 30 49 27 52 Z" fill="#9c1e2b"/>
+          <!-- Gold hairline between bezel and screen (premium detail) -->
+          <rect x="8" y="12" width="324" height="676" rx="43" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.28"/>
+
+          <!-- Inner dark bezel -->
+          <rect x="10" y="14" width="320" height="672" rx="42" fill="#000"/>
+
+          <!-- ═══ Screen content (clipped) ═══ -->
+          <g clip-path="url(#screenClip)">
+
+            <!-- Screen background -->
+            <rect x="10" y="14" width="320" height="672" fill="#0a0806"/>
+            <rect x="10" y="14" width="320" height="672" fill="url(#feltGrad)" opacity="0.06"/>
+
+            <!-- ─ Status bar ─ -->
+            <text x="34" y="42" font-family="system-ui, -apple-system, Inter, sans-serif" font-size="13" font-weight="600" fill="#f0e5c8">9:41</text>
+            <!-- Right-side status icons -->
+            <g fill="#f0e5c8">
+              <!-- Signal (4 bars) -->
+              <rect x="255" y="36" width="2.5" height="4" rx="0.5"/>
+              <rect x="259" y="34" width="2.5" height="6" rx="0.5"/>
+              <rect x="263" y="32" width="2.5" height="8" rx="0.5"/>
+              <rect x="267" y="30" width="2.5" height="10" rx="0.5"/>
+              <!-- Wifi -->
+              <path d="M 279 34 Q 284 30 289 34 M 281 37 Q 284 34 287 37 M 284 40 L 284 40" stroke="#f0e5c8" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <circle cx="284" cy="40" r="0.9"/>
+              <!-- Battery -->
+              <rect x="294" y="32" width="18" height="9" rx="2" fill="none" stroke="#f0e5c8" stroke-width="1"/>
+              <rect x="313" y="34" width="1.5" height="5" rx="0.5"/>
+              <rect x="296" y="34" width="14" height="5" rx="1"/>
             </g>
 
-            <!-- Central Heart -->
-            <g transform="translate(110, 154)">
-              <path d="M 0 60 C -50 20 -60 -10 -40 -35 C -22 -55 -5 -45 0 -25 C 5 -45 22 -55 40 -35 C 60 -10 50 20 0 60 Z" fill="#9c1e2b"/>
-              <path d="M 0 44 C -38 14 -46 -8 -30 -27 C -18 -40 -8 -32 0 -18 M 0 44 C 38 14 46 -8 30 -27 C 18 -40 8 -32 0 -18" fill="none" stroke="#f4ecd6" stroke-width="1" opacity="0.22"/>
+            <!-- Dynamic Island -->
+            <rect x="128" y="24" width="84" height="28" rx="14" fill="#000"/>
+
+            <!-- ─ App header ─ -->
+            <!-- Menu icon -->
+            <g stroke="#f0e5c8" stroke-width="1.4" stroke-linecap="round">
+              <line x1="32" y1="80" x2="48" y2="80"/>
+              <line x1="32" y1="86" x2="48" y2="86"/>
+              <line x1="32" y1="92" x2="48" y2="92"/>
             </g>
-          </svg>
-
-          <!-- ── Front card: Ace of Spades ── -->
-          <svg class="playing-card front-card" viewBox="0 0 245 343" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="paperFront" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#f8f0da"/>
-                <stop offset="1" stop-color="#ebe0c1"/>
-              </linearGradient>
-              <linearGradient id="spadeGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#1c1810"/>
-                <stop offset="1" stop-color="#080604"/>
-              </linearGradient>
-              <radialGradient id="spadeHl" cx="0.3" cy="0.25" r="0.5">
-                <stop offset="0" stop-color="#3a3020" stop-opacity="0.7"/>
-                <stop offset="1" stop-color="#3a3020" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-
-            <!-- Card body -->
-            <rect x="0.5" y="0.5" width="244" height="342" rx="16" fill="url(#paperFront)" stroke="rgba(20,16,10,0.18)" stroke-width="0.5"/>
-
-            <!-- Inner gold border -->
-            <rect x="10" y="10" width="225" height="323" rx="12" fill="none" stroke="#c9a94b" stroke-width="0.6" opacity="0.55"/>
-            <rect x="14" y="14" width="217" height="315" rx="10" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.22"/>
-
-            <!-- Corner index top-left -->
-            <text x="22" y="52" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="900" fill="#14100a">A</text>
-            <path d="M 32 63 C 27 68 24 71 24 75 C 24 79 27 81 31 79 L 30 84 L 34 84 L 33 79 C 37 81 40 79 40 75 C 40 71 37 68 32 63 Z" fill="#14100a"/>
-
-            <!-- Corner index bottom-right (rotated 180°) -->
-            <g transform="rotate(180 122.5 171.5)">
-              <text x="22" y="52" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="900" fill="#14100a">A</text>
-              <path d="M 32 63 C 27 68 24 71 24 75 C 24 79 27 81 31 79 L 30 84 L 34 84 L 33 79 C 37 81 40 79 40 75 C 40 71 37 68 32 63 Z" fill="#14100a"/>
+            <!-- Title -->
+            <text x="170" y="84" text-anchor="middle" font-family="Instrument Serif, Georgia, serif" font-size="16" font-weight="400" fill="#e6c777">Daily Champions</text>
+            <text x="170" y="100" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="10" font-weight="500" fill="#96896b" letter-spacing="0.05em">Buy-in: 50</text>
+            <!-- Bell icon -->
+            <path d="M 288 80 C 288 75 292 72 296 72 C 300 72 304 75 304 80 L 304 86 L 306 88 L 286 88 L 288 86 Z M 294 90 C 294 92 295 93 296 93 C 297 93 298 92 298 90" fill="none" stroke="#f0e5c8" stroke-width="1.2"/>
+            <!-- More icon (3 dots) -->
+            <g fill="#f0e5c8">
+              <circle cx="314" cy="80" r="1.5"/>
+              <circle cx="314" cy="86" r="1.5"/>
+              <circle cx="314" cy="92" r="1.5"/>
             </g>
 
-            <!-- Center ornament -->
-            <g transform="translate(122.5, 171.5)">
+            <!-- Divider -->
+            <line x1="24" y1="115" x2="316" y2="115" stroke="#c9a94b" stroke-width="0.5" opacity="0.2"/>
 
-              <!-- Decorative gold ring -->
-              <circle r="86" fill="none" stroke="#c9a94b" stroke-width="0.5" opacity="0.35"/>
-              <circle r="82" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.5" stroke-dasharray="1.5 3"/>
+            <!-- ─ Poker table (oval felt) ─ -->
+            <g transform="translate(170, 300)">
+              <!-- Table shadow -->
+              <ellipse cx="0" cy="8" rx="132" ry="148" fill="rgba(0,0,0,0.5)" filter="blur(6px)"/>
+              <!-- Outer gold ring -->
+              <ellipse cx="0" cy="0" rx="130" ry="146" fill="#12100d" stroke="#c9a94b" stroke-width="2" opacity="0.9"/>
+              <!-- Wood-like inner ring -->
+              <ellipse cx="0" cy="0" rx="126" ry="142" fill="#3a2418" stroke="#8b7a34" stroke-width="0.6"/>
+              <!-- Felt -->
+              <ellipse cx="0" cy="0" rx="118" ry="134" fill="url(#feltGrad)"/>
+              <!-- Felt inner ring -->
+              <ellipse cx="0" cy="0" rx="112" ry="128" fill="none" stroke="#c9a94b" stroke-width="0.5" opacity="0.35"/>
+              <!-- Felt center subtle glow -->
+              <ellipse cx="0" cy="0" rx="80" ry="90" fill="rgba(201, 169, 75, 0.03)"/>
+            </g>
 
-              <!-- The large spade -->
-              <path d="M 0 -72
-                       C -46 -30 -66 -8 -66 20
-                       C -66 44 -46 58 -20 48
-                       L -26 78
-                       L 26 78
-                       L 20 48
-                       C 46 58 66 44 66 20
-                       C 66 -8 46 -30 0 -72 Z"
-                    fill="url(#spadeGrad)"/>
-              <path d="M 0 -72
-                       C -46 -30 -66 -8 -66 20
-                       C -66 44 -46 58 -20 48
-                       L -26 78
-                       L 26 78
-                       L 20 48
-                       C 46 58 66 44 66 20
-                       C 66 -8 46 -30 0 -72 Z"
-                    fill="url(#spadeHl)"/>
+            <!-- ─ Players around table ─ -->
+            <!-- Player group symbol -->
+            <g font-family="system-ui, Inter, sans-serif">
 
-              <!-- Gold ornament on spade -->
-              <g opacity="0.72">
-                <circle cx="0" cy="8" r="2.5" fill="#e6c777"/>
-                <path d="M -14 8 L -5 8" stroke="#c9a94b" stroke-width="0.8"/>
-                <path d="M 5 8 L 14 8" stroke="#c9a94b" stroke-width="0.8"/>
-                <path d="M -22 8 L -19 8" stroke="#c9a94b" stroke-width="0.8"/>
-                <path d="M 19 8 L 22 8" stroke="#c9a94b" stroke-width="0.8"/>
+              <!-- P1: Top center -->
+              <g transform="translate(170, 172)">
+                <rect x="-9" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(-9)"/>
+                <rect x="0" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(9)"/>
+                <circle cx="0" cy="0" r="14" fill="url(#avatarG)" stroke="#c9a94b" stroke-width="0.7" opacity="0.95"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" font-weight="600" fill="#f0e5c8" opacity="0.7">R</text>
+                <rect x="-26" y="17" width="52" height="20" rx="3" fill="#0a0806" stroke="#c9a94b" stroke-width="0.3" opacity="0.9"/>
+                <text x="0" y="27" text-anchor="middle" font-size="8" font-weight="600" fill="#f0e5c8">Rustam</text>
+                <text x="0" y="34" text-anchor="middle" font-size="7.5" font-weight="500" fill="#e6c777">18,240</text>
               </g>
 
-              <!-- Ornamental curls below spade -->
-              <g stroke="#14100a" stroke-width="0.7" fill="none" opacity="0.55">
-                <path d="M -32 92 Q -20 96 -10 93"/>
-                <path d="M 10 93 Q 20 96 32 92"/>
-                <path d="M -6 96 L -6 100 M 6 96 L 6 100"/>
-                <path d="M 0 92 L 0 102" stroke-width="0.5"/>
+              <!-- P2: Upper right -->
+              <g transform="translate(280, 218)">
+                <rect x="-9" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(-9)"/>
+                <rect x="0" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(9)"/>
+                <circle cx="0" cy="0" r="14" fill="url(#avatarG)" stroke="#c9a94b" stroke-width="0.7" opacity="0.95"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" font-weight="600" fill="#f0e5c8" opacity="0.7">S</text>
+                <rect x="-26" y="17" width="52" height="20" rx="3" fill="#0a0806" stroke="#c9a94b" stroke-width="0.3" opacity="0.9"/>
+                <text x="0" y="27" text-anchor="middle" font-size="8" font-weight="600" fill="#f0e5c8">Sanjar</text>
+                <text x="0" y="34" text-anchor="middle" font-size="7.5" font-weight="500" fill="#e6c777">15,500</text>
+              </g>
+
+              <!-- P3: Lower right -->
+              <g transform="translate(280, 378)">
+                <rect x="-9" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(-9)"/>
+                <rect x="0" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(9)"/>
+                <circle cx="0" cy="0" r="14" fill="url(#avatarG)" stroke="#c9a94b" stroke-width="0.7" opacity="0.95"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" font-weight="600" fill="#f0e5c8" opacity="0.7">J</text>
+                <rect x="-26" y="17" width="52" height="20" rx="3" fill="#0a0806" stroke="#c9a94b" stroke-width="0.3" opacity="0.9"/>
+                <text x="0" y="27" text-anchor="middle" font-size="8" font-weight="600" fill="#f0e5c8">Jasur</text>
+                <text x="0" y="34" text-anchor="middle" font-size="7.5" font-weight="500" fill="#e6c777">8,610</text>
+              </g>
+
+              <!-- P4: Bottom center -->
+              <g transform="translate(170, 432)">
+                <rect x="-9" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(-9)"/>
+                <rect x="0" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(9)"/>
+                <circle cx="0" cy="0" r="14" fill="url(#avatarG)" stroke="#e6c777" stroke-width="1" opacity="1"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" font-weight="600" fill="#f0e5c8" opacity="0.75">B</text>
+                <rect x="-26" y="17" width="52" height="20" rx="3" fill="#0a0806" stroke="#e6c777" stroke-width="0.5" opacity="0.9"/>
+                <text x="0" y="27" text-anchor="middle" font-size="8" font-weight="600" fill="#f0e5c8">Behzod</text>
+                <text x="0" y="34" text-anchor="middle" font-size="7.5" font-weight="500" fill="#e6c777">10,420</text>
+              </g>
+
+              <!-- P5: Lower left -->
+              <g transform="translate(60, 378)">
+                <rect x="-9" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(-9)"/>
+                <rect x="0" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(9)"/>
+                <circle cx="0" cy="0" r="14" fill="url(#avatarG)" stroke="#c9a94b" stroke-width="0.7" opacity="0.95"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" font-weight="600" fill="#f0e5c8" opacity="0.7">O</text>
+                <rect x="-26" y="17" width="52" height="20" rx="3" fill="#0a0806" stroke="#c9a94b" stroke-width="0.3" opacity="0.9"/>
+                <text x="0" y="27" text-anchor="middle" font-size="8" font-weight="600" fill="#f0e5c8">Otabek</text>
+                <text x="0" y="34" text-anchor="middle" font-size="7.5" font-weight="500" fill="#e6c777">9,240</text>
+              </g>
+
+              <!-- P6: Upper left -->
+              <g transform="translate(60, 218)">
+                <rect x="-9" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(-9)"/>
+                <rect x="0" y="-9" width="9" height="13" rx="1.2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3" transform="rotate(9)"/>
+                <circle cx="0" cy="0" r="14" fill="url(#avatarG)" stroke="#c9a94b" stroke-width="0.7" opacity="0.95"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" font-weight="600" fill="#f0e5c8" opacity="0.7">S</text>
+                <rect x="-26" y="17" width="52" height="20" rx="3" fill="#0a0806" stroke="#c9a94b" stroke-width="0.3" opacity="0.9"/>
+                <text x="0" y="27" text-anchor="middle" font-size="8" font-weight="600" fill="#f0e5c8">Sherzod</text>
+                <text x="0" y="34" text-anchor="middle" font-size="7.5" font-weight="500" fill="#e6c777">32,360</text>
               </g>
 
             </g>
 
-          </svg>
+            <!-- ─ Community cards (Broadway straight: A♠ K♥ Q♦ J♣ 10♠) ─ -->
+            <g transform="translate(170, 280)">
+              <!-- Card template: 22w x 30h, cream, rounded -->
+              <!-- Card 1: 10♠ -->
+              <g transform="translate(-60, 0)">
+                <rect x="-11" y="-15" width="22" height="30" rx="2.5" fill="#f4ecd6" stroke="#8a7a5a" stroke-width="0.3"/>
+                <text x="-8" y="-6" font-family="Instrument Serif, Georgia, serif" font-size="8" font-weight="700" fill="#14100a">10</text>
+                <path d="M -8 -3 C -9 -2 -10 -1 -10 1 C -10 2 -9 3 -8 3 L -8.5 5 L -7.5 5 L -7.5 3 C -6 3 -6 2 -6 1 C -6 -1 -7 -2 -8 -3 Z" fill="#14100a"/>
+                <!-- Center pip -->
+                <path d="M 0 -4 C -3 -1 -5 2 -5 5 C -5 8 -3 10 0 9 L -1 12 L 1 12 L 0 9 C 3 10 5 8 5 5 C 5 2 3 -1 0 -4 Z" fill="#14100a"/>
+              </g>
 
-          <!-- ── Chip stack detail (now with brand red chip) ── -->
-          <svg class="chip-detail" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="chipDark" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#22222c"/>
-                <stop offset="1" stop-color="#0a0a10"/>
-              </linearGradient>
-              <linearGradient id="chipRed" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#f74a5e"/>
-                <stop offset="1" stop-color="#9a1a2a"/>
-              </linearGradient>
-              <linearGradient id="chipIvory" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#f4ecd6"/>
-                <stop offset="1" stop-color="#c9b78a"/>
-              </linearGradient>
-            </defs>
-            <!-- Bottom chip: dark -->
-            <ellipse cx="50" cy="66" rx="42" ry="9" fill="url(#chipDark)"/>
-            <ellipse cx="50" cy="63" rx="42" ry="9" fill="url(#chipDark)"/>
-            <ellipse cx="50" cy="63" rx="42" ry="9" fill="none" stroke="#e12a3e" stroke-width="0.6" opacity="0.55"/>
+              <!-- Card 2: J♣ -->
+              <g transform="translate(-30, 0)">
+                <rect x="-11" y="-15" width="22" height="30" rx="2.5" fill="#f4ecd6" stroke="#8a7a5a" stroke-width="0.3"/>
+                <text x="-8" y="-6" font-family="Instrument Serif, Georgia, serif" font-size="9" font-weight="700" fill="#14100a">J</text>
+                <!-- Club corner -->
+                <circle cx="-8" cy="-2" r="1.3" fill="#14100a"/>
+                <circle cx="-9.4" cy="0" r="1.3" fill="#14100a"/>
+                <circle cx="-6.6" cy="0" r="1.3" fill="#14100a"/>
+                <rect x="-8.4" y="0" width="0.8" height="2" fill="#14100a"/>
+                <!-- Center club -->
+                <circle cx="0" cy="3" r="2.8" fill="#14100a"/>
+                <circle cx="-3" cy="6" r="2.8" fill="#14100a"/>
+                <circle cx="3" cy="6" r="2.8" fill="#14100a"/>
+                <path d="M -1 7 L 1 7 L 1.5 11 L -1.5 11 Z" fill="#14100a"/>
+              </g>
 
-            <!-- Middle chip: brand red -->
-            <ellipse cx="50" cy="54" rx="40" ry="8" fill="url(#chipRed)"/>
-            <ellipse cx="50" cy="51" rx="40" ry="8" fill="url(#chipRed)"/>
-            <ellipse cx="50" cy="51" rx="40" ry="8" fill="none" stroke="#f4ecd6" stroke-width="0.5" opacity="0.4"/>
+              <!-- Card 3: Q♦ -->
+              <g transform="translate(0, -4)">
+                <rect x="-11" y="-15" width="22" height="30" rx="2.5" fill="#f4ecd6" stroke="#8a7a5a" stroke-width="0.3"/>
+                <text x="-8" y="-6" font-family="Instrument Serif, Georgia, serif" font-size="9" font-weight="700" fill="#8a1e2b">Q</text>
+                <path d="M -8 -3 L -6 -1 L -8 1 L -10 -1 Z" fill="#8a1e2b"/>
+                <!-- Center diamond -->
+                <path d="M 0 -2 L 5 5 L 0 12 L -5 5 Z" fill="#8a1e2b"/>
+              </g>
 
-            <!-- Top chip: ivory/cream with red center -->
-            <ellipse cx="50" cy="42" rx="38" ry="7.5" fill="url(#chipIvory)"/>
-            <ellipse cx="50" cy="39" rx="38" ry="7.5" fill="url(#chipIvory)"/>
-            <ellipse cx="50" cy="39" rx="30" ry="6" fill="none" stroke="#9a1a2a" stroke-width="0.7" opacity="0.65"/>
-            <ellipse cx="50" cy="39" rx="38" ry="7.5" fill="none" stroke="#8b7434" stroke-width="0.5" opacity="0.6"/>
-            <text x="50" y="43" text-anchor="middle" font-family="Fraunces, serif" font-size="7" font-weight="900" fill="#9a1a2a" opacity="0.85">♠</text>
-          </svg>
+              <!-- Card 4: K♥ -->
+              <g transform="translate(30, 0)">
+                <rect x="-11" y="-15" width="22" height="30" rx="2.5" fill="#f4ecd6" stroke="#8a7a5a" stroke-width="0.3"/>
+                <text x="-8" y="-6" font-family="Instrument Serif, Georgia, serif" font-size="9" font-weight="700" fill="#8a1e2b">K</text>
+                <path d="M -8 -1 C -9 -2 -10 -2 -10 -0.5 C -10 0.5 -8 2 -8 2 C -8 2 -6 0.5 -6 -0.5 C -6 -2 -7 -2 -8 -1 Z" fill="#8a1e2b"/>
+                <!-- Center heart -->
+                <path d="M 0 12 C -6 6 -8 2 -6 -2 C -4 -4 -1 -3 0 -1 C 1 -3 4 -4 6 -2 C 8 2 6 6 0 12 Z" fill="#8a1e2b"/>
+              </g>
 
-        </div>
+              <!-- Card 5: A♠ -->
+              <g transform="translate(60, 0)">
+                <rect x="-11" y="-15" width="22" height="30" rx="2.5" fill="#f4ecd6" stroke="#8a7a5a" stroke-width="0.3"/>
+                <text x="-8" y="-6" font-family="Instrument Serif, Georgia, serif" font-size="9" font-weight="700" fill="#14100a">A</text>
+                <path d="M -8 -3 C -9 -2 -10 -1 -10 1 C -10 2 -9 3 -8 3 L -8.5 5 L -7.5 5 L -7.5 3 C -6 3 -6 2 -6 1 C -6 -1 -7 -2 -8 -3 Z" fill="#14100a"/>
+                <!-- Center spade (larger) -->
+                <path d="M 0 -5 C -4 -1 -6 1 -6 4 C -6 7 -4 8 -1 7 L -2 11 L 2 11 L 1 7 C 4 8 6 7 6 4 C 6 1 4 -1 0 -5 Z" fill="#14100a"/>
+              </g>
+            </g>
+
+            <!-- ─ Pot chips + label ─ -->
+            <g transform="translate(170, 335)">
+              <!-- Chip stack (mini) -->
+              <ellipse cx="-8" cy="4" rx="7" ry="2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3"/>
+              <ellipse cx="-8" cy="2" rx="7" ry="2" fill="#8a1e2b" stroke="#c9a94b" stroke-width="0.3"/>
+              <ellipse cx="-8" cy="0" rx="7" ry="2" fill="#e6c777" stroke="#8b7a34" stroke-width="0.3"/>
+
+              <ellipse cx="8" cy="4" rx="7" ry="2" fill="#14100a" stroke="#c9a94b" stroke-width="0.3"/>
+              <ellipse cx="8" cy="2" rx="7" ry="2" fill="#14100a" stroke="#c9a94b" stroke-width="0.3"/>
+              <ellipse cx="8" cy="0" rx="7" ry="2" fill="#14100a" stroke="#c9a94b" stroke-width="0.3"/>
+              <ellipse cx="8" cy="-2" rx="7" ry="2" fill="#e6c777" stroke="#8b7a34" stroke-width="0.3"/>
+
+              <!-- Pot label -->
+              <rect x="-22" y="13" width="44" height="14" rx="7" fill="#0a0806" stroke="#c9a94b" stroke-width="0.4" opacity="0.9"/>
+              <text x="0" y="23" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="8" font-weight="600" fill="#e6c777">Pot: 3,250</text>
+            </g>
+
+            <!-- ─ Action bar ─ -->
+            <g transform="translate(0, 500)">
+              <!-- Balance chip icon + amount -->
+              <circle cx="34" cy="28" r="9" fill="#c9a94b" stroke="#8b7a34" stroke-width="0.6"/>
+              <circle cx="34" cy="28" r="6" fill="none" stroke="#8b7a34" stroke-width="0.4" stroke-dasharray="1 1.2"/>
+              <text x="34" y="31" text-anchor="middle" font-family="Instrument Serif, serif" font-size="8" font-weight="700" fill="#14100a">♠</text>
+              <text x="48" y="31" font-family="system-ui, Inter, sans-serif" font-size="12" font-weight="600" fill="#f0e5c8">10,420</text>
+
+              <!-- JOIN TABLE button (primary, gold) -->
+              <rect x="120" y="16" width="100" height="26" rx="4" fill="url(#joinBtn)" stroke="#8b7a34" stroke-width="0.4"/>
+              <rect x="120" y="16" width="100" height="26" rx="4" fill="none" stroke="rgba(255,245,210,0.3)" stroke-width="0.5"/>
+              <text x="170" y="33" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="9" font-weight="700" fill="#14100a" letter-spacing="0.1em">JOIN TABLE</text>
+
+              <!-- LOBBY button (secondary, outlined) -->
+              <rect x="230" y="16" width="76" height="26" rx="4" fill="none" stroke="#c9a94b" stroke-width="0.7" opacity="0.7"/>
+              <text x="268" y="33" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="9" font-weight="600" fill="#e6c777" letter-spacing="0.1em">LOBBY</text>
+            </g>
+
+            <!-- ─ Tab bar ─ -->
+            <line x1="10" y1="574" x2="330" y2="574" stroke="#c9a94b" stroke-width="0.3" opacity="0.25"/>
+            <g transform="translate(0, 590)">
+              <!-- Lobby tab -->
+              <g transform="translate(56, 0)">
+                <path d="M -6 4 L 0 -2 L 6 4 L 6 10 L -6 10 Z" fill="none" stroke="#96896b" stroke-width="1" stroke-linejoin="round"/>
+                <text x="0" y="24" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="8" font-weight="500" fill="#96896b">Lobby</text>
+              </g>
+              <!-- Tournaments tab -->
+              <g transform="translate(128, 0)">
+                <path d="M -4 -2 L 4 -2 L 4 4 C 4 7 2 9 0 9 C -2 9 -4 7 -4 4 Z" fill="none" stroke="#96896b" stroke-width="1"/>
+                <line x1="-6" y1="-2" x2="-4" y2="-2" stroke="#96896b" stroke-width="1"/>
+                <line x1="4" y1="-2" x2="6" y2="-2" stroke="#96896b" stroke-width="1"/>
+                <line x1="-2" y1="9" x2="2" y2="9" stroke="#96896b" stroke-width="1"/>
+                <line x1="0" y1="9" x2="0" y2="11" stroke="#96896b" stroke-width="1"/>
+                <text x="0" y="24" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="8" font-weight="500" fill="#96896b">Tournaments</text>
+              </g>
+              <!-- Table tab (SELECTED) -->
+              <g transform="translate(212, 0)">
+                <path d="M 0 -6 C -5 -1 -7 2 -7 5 C -7 8 -5 10 -2 9 L -3 12 L 3 12 L 2 9 C 5 10 7 8 7 5 C 7 2 5 -1 0 -6 Z" fill="#e6c777"/>
+                <text x="0" y="24" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="8" font-weight="600" fill="#e6c777">Table</text>
+              </g>
+              <!-- Profile tab -->
+              <g transform="translate(284, 0)">
+                <circle cx="0" cy="-1" r="3.5" fill="none" stroke="#96896b" stroke-width="1"/>
+                <path d="M -6 10 C -6 6 -3 4 0 4 C 3 4 6 6 6 10" fill="none" stroke="#96896b" stroke-width="1"/>
+                <text x="0" y="24" text-anchor="middle" font-family="system-ui, Inter, sans-serif" font-size="8" font-weight="500" fill="#96896b">Profile</text>
+              </g>
+            </g>
+
+            <!-- Home indicator -->
+            <rect x="130" y="666" width="80" height="4" rx="2" fill="#f0e5c8" opacity="0.65"/>
+
+          </g>
+
+          <!-- Frame highlight overlay (glass sheen at top) -->
+          <path d="M 20 10 Q 30 4 60 4 L 280 4 Q 310 4 320 10" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.6"/>
+
+        </svg>
+
+        <!-- ═══════ Physical aces (bottom-left) ═══════ -->
+        <svg class="aces" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="aceP1" x1="0" y1="0" x2="0.6" y2="1">
+              <stop offset="0" stop-color="#f4ecd6"/>
+              <stop offset="1" stop-color="#e6d9b3"/>
+            </linearGradient>
+            <linearGradient id="aceP2" x1="0" y1="0" x2="0.6" y2="1">
+              <stop offset="0" stop-color="#f7efdc"/>
+              <stop offset="1" stop-color="#e8dbb7"/>
+            </linearGradient>
+            <radialGradient id="aceVig" cx="0.5" cy="0.5" r="0.7">
+              <stop offset="0.6" stop-color="rgba(0,0,0,0)"/>
+              <stop offset="1" stop-color="rgba(80,50,20,0.2)"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Card 1: Ace of Spades (back, slight rotation) -->
+          <g transform="translate(0, 20) rotate(-6 70 100)">
+            <rect x="0" y="0" width="140" height="196" rx="10" fill="url(#aceP1)" stroke="rgba(20,16,10,0.24)" stroke-width="0.5"/>
+            <rect x="0" y="0" width="140" height="196" rx="10" fill="url(#aceVig)"/>
+            <rect x="6" y="6" width="128" height="184" rx="7" fill="none" stroke="#c9a94b" stroke-width="0.5" opacity="0.6"/>
+
+            <!-- Corner TL -->
+            <text x="12" y="30" font-family="Instrument Serif, Georgia, serif" font-size="22" font-weight="400" fill="#14100a">A</text>
+            <path d="M 20 38 C 16 42 14 45 14 48 C 14 51 16 52 19 51 L 18 55 L 22 55 L 21 51 C 24 52 26 51 26 48 C 26 45 24 42 20 38 Z" fill="#14100a"/>
+
+            <!-- Corner BR -->
+            <g transform="rotate(180 70 98)">
+              <text x="12" y="30" font-family="Instrument Serif, Georgia, serif" font-size="22" font-weight="400" fill="#14100a">A</text>
+              <path d="M 20 38 C 16 42 14 45 14 48 C 14 51 16 52 19 51 L 18 55 L 22 55 L 21 51 C 24 52 26 51 26 48 C 26 45 24 42 20 38 Z" fill="#14100a"/>
+            </g>
+
+            <!-- Central spade -->
+            <g transform="translate(70, 98)">
+              <circle r="42" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.5"/>
+              <circle r="38" fill="none" stroke="#c9a94b" stroke-width="0.3" opacity="0.4" stroke-dasharray="1 2"/>
+              <path d="M 0 -34 C -22 -14 -32 -3 -32 10 C -32 22 -22 28 -9 24 L -12 38 L 12 38 L 9 24 C 22 28 32 22 32 10 C 32 -3 22 -14 0 -34 Z" fill="#14100a"/>
+              <!-- Ornament dot -->
+              <circle cx="0" cy="4" r="1" fill="#c9a94b" opacity="0.85"/>
+            </g>
+          </g>
+
+          <!-- Card 2: Ace of Hearts (front, overlapping) -->
+          <g transform="translate(110, 5) rotate(8 70 100)">
+            <rect x="0" y="0" width="140" height="196" rx="10" fill="url(#aceP2)" stroke="rgba(20,16,10,0.24)" stroke-width="0.5"/>
+            <rect x="0" y="0" width="140" height="196" rx="10" fill="url(#aceVig)"/>
+            <rect x="6" y="6" width="128" height="184" rx="7" fill="none" stroke="#c9a94b" stroke-width="0.5" opacity="0.6"/>
+
+            <!-- Corner TL -->
+            <text x="12" y="30" font-family="Instrument Serif, Georgia, serif" font-size="22" font-weight="400" fill="#8a1e2b">A</text>
+            <path d="M 20 48 C 15 42 10 42 10 47 C 10 50 20 58 20 58 C 20 58 30 50 30 47 C 30 42 25 42 20 48 Z" fill="#8a1e2b"/>
+
+            <!-- Corner BR -->
+            <g transform="rotate(180 70 98)">
+              <text x="12" y="30" font-family="Instrument Serif, Georgia, serif" font-size="22" font-weight="400" fill="#8a1e2b">A</text>
+              <path d="M 20 48 C 15 42 10 42 10 47 C 10 50 20 58 20 58 C 20 58 30 50 30 47 C 30 42 25 42 20 48 Z" fill="#8a1e2b"/>
+            </g>
+
+            <!-- Central heart -->
+            <g transform="translate(70, 98)">
+              <circle r="42" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.5"/>
+              <path d="M 0 38 C -30 12 -40 -6 -25 -22 C -14 -32 -3 -28 0 -14 C 3 -28 14 -32 25 -22 C 40 -6 30 12 0 38 Z" fill="#8a1e2b"/>
+            </g>
+          </g>
+        </svg>
+
+        <!-- ═══════ Physical chip stacks (bottom-right) ═══════ -->
+        <svg class="chips-stack" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="chipDarkG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2a1e14"/>
+              <stop offset="1" stop-color="#0a0604"/>
+            </linearGradient>
+            <linearGradient id="chipGoldG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e6c777"/>
+              <stop offset="0.6" stop-color="#c9a94b"/>
+              <stop offset="1" stop-color="#8b7a34"/>
+            </linearGradient>
+            <radialGradient id="chipShine" cx="0.35" cy="0.3" r="0.6">
+              <stop offset="0" stop-color="rgba(255,240,200,0.35)"/>
+              <stop offset="1" stop-color="rgba(255,240,200,0)"/>
+            </radialGradient>
+          </defs>
+
+          <!-- ─ Loose chips (behind, flat) ─ -->
+          <g transform="translate(45, 175)">
+            <ellipse cx="0" cy="0" rx="28" ry="7" fill="url(#chipDarkG)"/>
+            <ellipse cx="0" cy="0" rx="28" ry="7" fill="none" stroke="#c9a94b" stroke-width="0.6" opacity="0.7"/>
+            <ellipse cx="0" cy="0" rx="18" ry="4.5" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.5"/>
+          </g>
+          <g transform="translate(95, 182) rotate(15)">
+            <ellipse cx="0" cy="0" rx="26" ry="6.5" fill="url(#chipDarkG)"/>
+            <ellipse cx="0" cy="0" rx="26" ry="6.5" fill="none" stroke="#c9a94b" stroke-width="0.6" opacity="0.7"/>
+            <ellipse cx="0" cy="0" rx="17" ry="4" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.5"/>
+          </g>
+
+          <!-- ─ Stack 1 (tallest, back-left) ─ -->
+          <g transform="translate(80, 45)">
+            <!-- 8 chips stacked -->
+            <g>
+              <ellipse cx="0" cy="120" rx="42" ry="10" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="110" rx="42" ry="10" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="100" rx="42" ry="10" fill="url(#chipGoldG)" stroke="#8b7a34" stroke-width="0.5"/>
+              <ellipse cx="0" cy="90" rx="42" ry="10" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="80" rx="42" ry="10" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="70" rx="42" ry="10" fill="url(#chipGoldG)" stroke="#8b7a34" stroke-width="0.5"/>
+              <ellipse cx="0" cy="60" rx="42" ry="10" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="50" rx="42" ry="10" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <!-- Top chip (main visible face) -->
+              <ellipse cx="0" cy="40" rx="42" ry="12" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.6"/>
+              <ellipse cx="0" cy="40" rx="42" ry="12" fill="url(#chipShine)"/>
+              <!-- Outer gold ring on top -->
+              <ellipse cx="0" cy="40" rx="38" ry="10.8" fill="none" stroke="#c9a94b" stroke-width="0.8" opacity="0.85"/>
+              <!-- Notches around top edge (8) -->
+              <g fill="#c9a94b" opacity="0.75">
+                <rect x="-1" y="28" width="2" height="4"/>
+                <rect x="-1" y="48" width="2" height="4"/>
+                <rect x="-42" y="39" width="4" height="2"/>
+                <rect x="38" y="39" width="4" height="2"/>
+              </g>
+              <!-- Center cream/gold face -->
+              <ellipse cx="0" cy="40" rx="24" ry="7" fill="#e6c777" stroke="#8b7a34" stroke-width="0.5" opacity="0.95"/>
+              <ellipse cx="0" cy="40" rx="19" ry="5.5" fill="none" stroke="#8b7a34" stroke-width="0.3" opacity="0.6" stroke-dasharray="1 1.5"/>
+              <!-- Spade monogram -->
+              <path d="M 0 34 C -4 37 -6 39 -6 42 C -6 44 -4 45 -1 44 L -1.5 47 L 1.5 47 L 1 44 C 4 45 6 44 6 42 C 6 39 4 37 0 34 Z" fill="#14100a"/>
+            </g>
+          </g>
+
+          <!-- ─ Stack 2 (shorter, front-right) ─ -->
+          <g transform="translate(175, 90)">
+            <g>
+              <ellipse cx="0" cy="80" rx="38" ry="9" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="72" rx="38" ry="9" fill="url(#chipGoldG)" stroke="#8b7a34" stroke-width="0.5"/>
+              <ellipse cx="0" cy="64" rx="38" ry="9" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="56" rx="38" ry="9" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="48" rx="38" ry="9" fill="url(#chipGoldG)" stroke="#8b7a34" stroke-width="0.5"/>
+              <!-- Top chip -->
+              <ellipse cx="0" cy="40" rx="38" ry="10.5" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.6"/>
+              <ellipse cx="0" cy="40" rx="38" ry="10.5" fill="url(#chipShine)"/>
+              <ellipse cx="0" cy="40" rx="34" ry="9.5" fill="none" stroke="#c9a94b" stroke-width="0.8" opacity="0.85"/>
+              <g fill="#c9a94b" opacity="0.75">
+                <rect x="-1" y="30" width="2" height="3.5"/>
+                <rect x="-1" y="47" width="2" height="3.5"/>
+                <rect x="-38" y="39" width="3.5" height="2"/>
+                <rect x="34" y="39" width="3.5" height="2"/>
+              </g>
+              <ellipse cx="0" cy="40" rx="21" ry="6" fill="#e6c777" stroke="#8b7a34" stroke-width="0.5" opacity="0.95"/>
+              <ellipse cx="0" cy="40" rx="17" ry="4.8" fill="none" stroke="#8b7a34" stroke-width="0.3" opacity="0.6" stroke-dasharray="1 1.5"/>
+              <path d="M 0 35 C -3 37 -5 39 -5 41 C -5 43 -3 44 -1 43 L -1 45 L 1 45 L 1 43 C 3 44 5 43 5 41 C 5 39 3 37 0 35 Z" fill="#14100a"/>
+            </g>
+          </g>
+
+          <!-- ─ Stack 3 (shortest, foreground center) ─ -->
+          <g transform="translate(140, 145)">
+            <g>
+              <ellipse cx="0" cy="35" rx="32" ry="8" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="28" rx="32" ry="8" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.5"/>
+              <ellipse cx="0" cy="21" rx="32" ry="8" fill="url(#chipGoldG)" stroke="#8b7a34" stroke-width="0.5"/>
+              <!-- Top -->
+              <ellipse cx="0" cy="14" rx="32" ry="9" fill="url(#chipDarkG)" stroke="#c9a94b" stroke-width="0.6"/>
+              <ellipse cx="0" cy="14" rx="32" ry="9" fill="url(#chipShine)"/>
+              <ellipse cx="0" cy="14" rx="29" ry="8" fill="none" stroke="#c9a94b" stroke-width="0.7" opacity="0.85"/>
+              <ellipse cx="0" cy="14" rx="17" ry="5" fill="#e6c777" stroke="#8b7a34" stroke-width="0.4" opacity="0.95"/>
+              <path d="M 0 10 C -2.5 12 -4 13.5 -4 15 C -4 17 -2.5 18 -0.5 17.5 L -0.5 19.5 L 0.5 19.5 L 0.5 17.5 C 2.5 18 4 17 4 15 C 4 13.5 2.5 12 0 10 Z" fill="#14100a"/>
+            </g>
+          </g>
+
+        </svg>
+
       </div>
 
     </main>
@@ -783,7 +998,7 @@
     <!-- ── STATS ── -->
     <section class="stats" aria-label="Ключевые показатели">
       <div class="stat">
-        <div class="stat-value">24/7</div>
+        <div class="stat-value">24<span class="amp">/</span>7</div>
         <div class="stat-label">Столы всегда живые</div>
       </div>
       <div class="stat">
