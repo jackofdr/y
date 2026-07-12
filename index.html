@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokerUZ — Покерный клуб № 1 в Узбекистане</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1596345781609399');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1596345781609399&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;0,9..144,900;1,9..144,700;1,9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      /* Void — deep near-black background */
+      --void:       #08080b;
+      --void-2:     #0f0f14;
+      --surface:    #16161e;
+      --surface-hi: #1f1f2a;
+
+      /* Brand red — primary accent (PokerStars/GG vibe) */
+      --red:        #e12a3e;
+      --red-hi:     #f74a5e;
+      --red-deep:   #9a1a2a;
+      --red-glow:   rgba(225, 42, 62, 0.5);
+      --red-line:   rgba(225, 42, 62, 0.18);
+      --red-dim:    rgba(225, 42, 62, 0.35);
+
+      /* Restrained gold — only for playing card polygraphy */
+      --gold:       #c9a94b;
+      --gold-dim:   rgba(201, 169, 75, 0.32);
+
+      /* Text */
+      --ivory:      #f2ede0;
+      --ivory-mute: #86816f;
+      --ivory-line: rgba(242, 237, 224, 0.09);
+      --ivory-dim:  rgba(242, 237, 224, 0.35);
+
+      /* Card polygraphy */
+      --card-paper: #f4ecd6;
+      --card-ink:   #14100a;
+      --oxblood:    #9c1e2b;
+
+      --live:       #4ade80;
+
+      --f-display: 'Fraunces', Georgia, serif;
+      --f-body:    'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--void);
+      color: var(--ivory);
+      min-height: 100dvh;
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── AMBIENT: red brand glows on void ───────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 82% 22%, rgba(225, 42, 62, 0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 45% at 15% 85%, rgba(225, 42, 62, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 60% at 50% 50%, rgba(31, 31, 42, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── AMBIENT: fine diagonal grain ───────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg,  rgba(242, 237, 224, 0.007) 0, rgba(242, 237, 224, 0.007) 1px, transparent 1px, transparent 26px),
+        repeating-linear-gradient(-45deg, rgba(242, 237, 224, 0.007) 0, rgba(242, 237, 224, 0.007) 1px, transparent 1px, transparent 26px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100dvh;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 48px;
+      border-bottom: 1px solid var(--ivory-line);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--red-dim);
+      border-radius: 50%;
+      color: var(--red);
+      font-size: 15px;
+      line-height: 1;
+      background: radial-gradient(circle at 30% 30%, rgba(225, 42, 62, 0.22), transparent 70%);
+      box-shadow: 0 0 20px rgba(225, 42, 62, 0.25), inset 0 0 8px rgba(225, 42, 62, 0.15);
+    }
+    .logo-text {
+      font-family: var(--f-display);
+      font-weight: 900;
+      font-size: 23px;
+      letter-spacing: 0.005em;
+      color: var(--ivory);
+    }
+    .logo-text .accent {
+      color: var(--red);
+      font-style: italic;
+      font-weight: 800;
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--f-body);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ivory-mute);
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--live);
+      box-shadow: 0 0 12px var(--live), 0 0 0 3px rgba(74, 222, 128, 0.14);
+      animation: pulse 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.55; transform: scale(1.3); }
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 72px;
+      align-items: center;
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 64px 48px 40px;
+    }
+
+    .hero-copy { max-width: 580px; }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--f-body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 34px;
+    }
+    .eyebrow::before,
+    .eyebrow::after {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--red-dim);
+    }
+
+    /* Headline */
+    .headline {
+      font-family: var(--f-display);
+      font-weight: 900;
+      font-size: clamp(46px, 6.6vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.022em;
+      color: var(--ivory);
+      margin-bottom: 26px;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .headline em {
+      display: block;
+      font-style: italic;
+      font-weight: 900;
+      color: var(--red);
+      font-variation-settings: "opsz" 144, "SOFT" 60;
+      text-shadow: 0 0 40px rgba(225, 42, 62, 0.3);
+    }
+
+    /* Lede */
+    .lede {
+      font-family: var(--f-body);
+      font-size: 16.5px;
+      line-height: 1.7;
+      color: var(--ivory-mute);
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+    .lede strong {
+      color: var(--ivory);
+      font-weight: 500;
+    }
+
+    /* Ornament divider */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 34px;
+      max-width: 260px;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ivory-line) 30%, var(--ivory-line) 70%, transparent);
+    }
+    .ornament-suit {
+      font-size: 10px;
+      line-height: 1;
+    }
+    .ornament-suit.spade,
+    .ornament-suit.club  { color: var(--ivory-dim); }
+    .ornament-suit.heart,
+    .ornament-suit.diamond { color: var(--red); }
+
+    /* CTA */
+    .cta-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(180deg, #ee3a52 0%, #e12a3e 45%, #b91a30 100%);
+      color: #fff;
+      font-family: var(--f-body);
+      font-weight: 700;
+      font-size: 15.5px;
+      letter-spacing: 0.02em;
+      padding: 18px 42px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(247, 74, 94, 0.45),
+        0 14px 36px rgba(225, 42, 62, 0.42),
+        0 4px 16px rgba(0, 0, 0, 0.6);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      min-width: 340px;
+    }
+    .cta:hover {
+      transform: translateY(-1.5px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(247, 74, 94, 0.7),
+        0 20px 48px rgba(225, 42, 62, 0.55),
+        0 6px 22px rgba(0, 0, 0, 0.6);
+    }
+    .cta:active { transform: translateY(0); }
+
+    .cta-tg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .cta-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--ivory-mute);
+      letter-spacing: 0.02em;
+    }
+    .cta-note-mark {
+      color: var(--red);
+      font-size: 9px;
+      line-height: 1;
+    }
+
+    /* ─── HERO VISUAL ────────────────────────────────────────── */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Red brand glow behind cards */
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 45% 40%, rgba(225, 42, 62, 0.25) 0%, rgba(225, 42, 62, 0.08) 35%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(4px);
+    }
+    /* Subtle ring */
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      border: 1px solid var(--red-line);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .card-stage {
+      position: relative;
+      width: 380px;
+      height: 480px;
+      z-index: 1;
+    }
+
+    .playing-card {
+      position: absolute;
+      transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.5, 1);
+      filter:
+        drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7))
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5))
+        drop-shadow(0 0 40px rgba(225, 42, 62, 0.12));
+    }
+
+    .playing-card.back-card {
+      top: 60px;
+      left: 20px;
+      transform: rotate(-13deg);
+      width: 220px;
+    }
+    .playing-card.front-card {
+      top: 30px;
+      left: 155px;
+      transform: rotate(9deg);
+      width: 245px;
+      z-index: 2;
+    }
+
+    .card-stage:hover .front-card {
+      transform: rotate(5deg) translateY(-14px);
+    }
+    .card-stage:hover .back-card {
+      transform: rotate(-17deg) translateY(-6px) translateX(-10px);
+    }
+
+    /* Chip stack detail */
+    .chip-detail {
+      position: absolute;
+      bottom: 30px;
+      right: 20px;
+      width: 90px;
+      z-index: 3;
+      opacity: 0.9;
+      filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.65));
+    }
+
+    /* ─── STATS ──────────────────────────────────────────────── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 48px 32px;
+      border-top: 1px solid var(--ivory-line);
+      border-bottom: 1px solid var(--ivory-line);
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 4px 20px;
+      position: relative;
+      text-align: center;
+    }
+    .stat + .stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 1px;
+      background: var(--ivory-line);
+    }
+
+    .stat-value {
+      font-family: var(--f-display);
+      font-weight: 900;
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1;
+      color: var(--ivory);
+      letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 144;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .stat-value::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--red);
+      align-self: center;
+      box-shadow: 0 0 8px var(--red-glow);
+      flex-shrink: 0;
+    }
+    .stat-label {
+      font-family: var(--f-body);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ivory-mute);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 22px 20px;
+      font-size: 10.5px;
+      color: rgba(134, 129, 111, 0.5);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      header { padding: 18px 24px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 32px 24px 48px;
+        text-align: left;
+      }
+      .hero-copy { max-width: none; }
+      .hero-visual {
+        order: -1;
+        min-height: 320px;
+      }
+      .hero-visual::before { width: 400px; height: 400px; }
+      .hero-visual::after  { width: 320px; height: 320px; }
+
+      .card-stage {
+        width: 300px;
+        height: 340px;
+        transform: scale(0.88);
+      }
+      .playing-card.back-card { top: 40px; left: 10px; width: 175px; }
+      .playing-card.front-card { top: 20px; left: 115px; width: 195px; }
+      .chip-detail { bottom: 15px; right: 10px; width: 70px; }
+
+      .headline { font-size: clamp(38px, 8.5vw, 60px); }
+      .cta { min-width: 100%; }
+      .cta-block { align-items: stretch; }
+      .ornament { max-width: 100%; }
+
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 24px 20px;
+      }
+      .stat { padding: 4px 8px; }
+    }
+
+    @media (max-width: 520px) {
+      header { padding: 16px 20px; }
+      .logo-text { font-size: 20px; }
+      .live-label { display: none; }
+
+      .hero { padding: 24px 20px 40px; }
+      .hero-visual { min-height: 280px; }
+      .hero-visual::before { width: 320px; height: 320px; }
+      .hero-visual::after  { width: 260px; height: 260px; }
+      .card-stage { transform: scale(0.78); }
+
+      .eyebrow {
+        font-size: 9.5px;
+        letter-spacing: 0.2em;
+        margin-bottom: 24px;
+      }
+      .eyebrow::before, .eyebrow::after { width: 18px; }
+      .lede { font-size: 15.5px; margin-bottom: 32px; }
+      .cta { padding: 17px 28px; font-size: 15px; }
+
+      .stat-value { font-size: 26px; }
+      .stat-value::before { width: 4px; height: 4px; }
+      .stat-label { font-size: 9px; letter-spacing: 0.14em; }
+      .stat { padding: 4px 4px; gap: 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- ── HEADER ── -->
+    <header>
+      <a href="#" class="logo">
+        <span class="logo-mark">♠</span>
+        <span class="logo-text">Poker<span class="accent">UZ</span></span>
+      </a>
+      <div class="live">
+        <span class="live-dot"></span>
+        <span class="live-label">За столами сейчас</span>
+      </div>
+    </header>
+
+    <!-- ── HERO ── -->
+    <main class="hero">
+
+      <!-- Copy column -->
+      <div class="hero-copy">
+
+        <div class="eyebrow">Покерный клуб · Узбекистан</div>
+
+        <h1 class="headline">
+          Играй. Побеждай.
+          <em>Стань чемпионом.</em>
+        </h1>
+
+        <p class="lede">
+          Приватный покерный клуб для игроков из Узбекистана. <strong>Живые столы, честная раздача</strong> и мгновенный вход через Telegram.
+        </p>
+
+        <div class="ornament" aria-hidden="true">
+          <span class="ornament-line"></span>
+          <span class="ornament-suit spade">♠</span>
+          <span class="ornament-suit heart">♥</span>
+          <span class="ornament-suit diamond">♦</span>
+          <span class="ornament-suit club">♣</span>
+          <span class="ornament-line"></span>
+        </div>
+
+        <div class="cta-block">
+          <a
+            href="https://t.me/+K7rSM6HfE6I5MzUy"
+            class="cta"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick="fbq('track','Lead')"
+          >
+            <svg class="cta-tg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.265 2.428a1.5 1.5 0 0 0-1.52-.21L2.095 9.54a1.5 1.5 0 0 0 .06 2.79l4.34 1.46 1.56 5.3a.5.5 0 0 0 .84.19l2.56-2.46 4.63 3.58a1.5 1.5 0 0 0 2.38-.9l3-16a1.5 1.5 0 0 0-.2-1.07z" fill="#fff"/>
+            </svg>
+            Войти через Telegram
+          </a>
+          <span class="cta-note">
+            <span class="cta-note-mark">◆</span>
+            Бесплатный вход · Игроки уже за столом
+          </span>
+        </div>
+      </div>
+
+      <!-- Visual column -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="card-stage">
+
+          <!-- ── Back card: Ace of Hearts ── -->
+          <svg class="playing-card back-card" viewBox="0 0 220 308" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="paperBack" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f7efd8"/>
+                <stop offset="1" stop-color="#ede3c5"/>
+              </linearGradient>
+            </defs>
+            <rect x="0.5" y="0.5" width="219" height="307" rx="14" fill="url(#paperBack)" stroke="rgba(20,16,10,0.14)" stroke-width="0.5"/>
+            <rect x="9" y="9" width="202" height="290" rx="10" fill="none" stroke="#c9a94b" stroke-width="0.5" opacity="0.35"/>
+
+            <!-- Corner index top-left -->
+            <text x="18" y="42" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="900" fill="#9c1e2b">A</text>
+            <path d="M 27 52 C 24 49 20 49 20 53 C 20 56 27 62 27 62 C 27 62 34 56 34 53 C 34 49 30 49 27 52 Z" fill="#9c1e2b"/>
+
+            <!-- Corner index bottom-right (rotated) -->
+            <g transform="rotate(180 110 154)">
+              <text x="18" y="42" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="900" fill="#9c1e2b">A</text>
+              <path d="M 27 52 C 24 49 20 49 20 53 C 20 56 27 62 27 62 C 27 62 34 56 34 53 C 34 49 30 49 27 52 Z" fill="#9c1e2b"/>
+            </g>
+
+            <!-- Central Heart -->
+            <g transform="translate(110, 154)">
+              <path d="M 0 60 C -50 20 -60 -10 -40 -35 C -22 -55 -5 -45 0 -25 C 5 -45 22 -55 40 -35 C 60 -10 50 20 0 60 Z" fill="#9c1e2b"/>
+              <path d="M 0 44 C -38 14 -46 -8 -30 -27 C -18 -40 -8 -32 0 -18 M 0 44 C 38 14 46 -8 30 -27 C 18 -40 8 -32 0 -18" fill="none" stroke="#f4ecd6" stroke-width="1" opacity="0.22"/>
+            </g>
+          </svg>
+
+          <!-- ── Front card: Ace of Spades ── -->
+          <svg class="playing-card front-card" viewBox="0 0 245 343" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="paperFront" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f8f0da"/>
+                <stop offset="1" stop-color="#ebe0c1"/>
+              </linearGradient>
+              <linearGradient id="spadeGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1c1810"/>
+                <stop offset="1" stop-color="#080604"/>
+              </linearGradient>
+              <radialGradient id="spadeHl" cx="0.3" cy="0.25" r="0.5">
+                <stop offset="0" stop-color="#3a3020" stop-opacity="0.7"/>
+                <stop offset="1" stop-color="#3a3020" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Card body -->
+            <rect x="0.5" y="0.5" width="244" height="342" rx="16" fill="url(#paperFront)" stroke="rgba(20,16,10,0.18)" stroke-width="0.5"/>
+
+            <!-- Inner gold border -->
+            <rect x="10" y="10" width="225" height="323" rx="12" fill="none" stroke="#c9a94b" stroke-width="0.6" opacity="0.55"/>
+            <rect x="14" y="14" width="217" height="315" rx="10" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.22"/>
+
+            <!-- Corner index top-left -->
+            <text x="22" y="52" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="900" fill="#14100a">A</text>
+            <path d="M 32 63 C 27 68 24 71 24 75 C 24 79 27 81 31 79 L 30 84 L 34 84 L 33 79 C 37 81 40 79 40 75 C 40 71 37 68 32 63 Z" fill="#14100a"/>
+
+            <!-- Corner index bottom-right (rotated 180°) -->
+            <g transform="rotate(180 122.5 171.5)">
+              <text x="22" y="52" font-family="Fraunces, Georgia, serif" font-size="34" font-weight="900" fill="#14100a">A</text>
+              <path d="M 32 63 C 27 68 24 71 24 75 C 24 79 27 81 31 79 L 30 84 L 34 84 L 33 79 C 37 81 40 79 40 75 C 40 71 37 68 32 63 Z" fill="#14100a"/>
+            </g>
+
+            <!-- Center ornament -->
+            <g transform="translate(122.5, 171.5)">
+
+              <!-- Decorative gold ring -->
+              <circle r="86" fill="none" stroke="#c9a94b" stroke-width="0.5" opacity="0.35"/>
+              <circle r="82" fill="none" stroke="#c9a94b" stroke-width="0.4" opacity="0.5" stroke-dasharray="1.5 3"/>
+
+              <!-- The large spade -->
+              <path d="M 0 -72
+                       C -46 -30 -66 -8 -66 20
+                       C -66 44 -46 58 -20 48
+                       L -26 78
+                       L 26 78
+                       L 20 48
+                       C 46 58 66 44 66 20
+                       C 66 -8 46 -30 0 -72 Z"
+                    fill="url(#spadeGrad)"/>
+              <path d="M 0 -72
+                       C -46 -30 -66 -8 -66 20
+                       C -66 44 -46 58 -20 48
+                       L -26 78
+                       L 26 78
+                       L 20 48
+                       C 46 58 66 44 66 20
+                       C 66 -8 46 -30 0 -72 Z"
+                    fill="url(#spadeHl)"/>
+
+              <!-- Gold ornament on spade -->
+              <g opacity="0.72">
+                <circle cx="0" cy="8" r="2.5" fill="#e6c777"/>
+                <path d="M -14 8 L -5 8" stroke="#c9a94b" stroke-width="0.8"/>
+                <path d="M 5 8 L 14 8" stroke="#c9a94b" stroke-width="0.8"/>
+                <path d="M -22 8 L -19 8" stroke="#c9a94b" stroke-width="0.8"/>
+                <path d="M 19 8 L 22 8" stroke="#c9a94b" stroke-width="0.8"/>
+              </g>
+
+              <!-- Ornamental curls below spade -->
+              <g stroke="#14100a" stroke-width="0.7" fill="none" opacity="0.55">
+                <path d="M -32 92 Q -20 96 -10 93"/>
+                <path d="M 10 93 Q 20 96 32 92"/>
+                <path d="M -6 96 L -6 100 M 6 96 L 6 100"/>
+                <path d="M 0 92 L 0 102" stroke-width="0.5"/>
+              </g>
+
+            </g>
+
+          </svg>
+
+          <!-- ── Chip stack detail (now with brand red chip) ── -->
+          <svg class="chip-detail" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="chipDark" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#22222c"/>
+                <stop offset="1" stop-color="#0a0a10"/>
+              </linearGradient>
+              <linearGradient id="chipRed" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f74a5e"/>
+                <stop offset="1" stop-color="#9a1a2a"/>
+              </linearGradient>
+              <linearGradient id="chipIvory" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f4ecd6"/>
+                <stop offset="1" stop-color="#c9b78a"/>
+              </linearGradient>
+            </defs>
+            <!-- Bottom chip: dark -->
+            <ellipse cx="50" cy="66" rx="42" ry="9" fill="url(#chipDark)"/>
+            <ellipse cx="50" cy="63" rx="42" ry="9" fill="url(#chipDark)"/>
+            <ellipse cx="50" cy="63" rx="42" ry="9" fill="none" stroke="#e12a3e" stroke-width="0.6" opacity="0.55"/>
+
+            <!-- Middle chip: brand red -->
+            <ellipse cx="50" cy="54" rx="40" ry="8" fill="url(#chipRed)"/>
+            <ellipse cx="50" cy="51" rx="40" ry="8" fill="url(#chipRed)"/>
+            <ellipse cx="50" cy="51" rx="40" ry="8" fill="none" stroke="#f4ecd6" stroke-width="0.5" opacity="0.4"/>
+
+            <!-- Top chip: ivory/cream with red center -->
+            <ellipse cx="50" cy="42" rx="38" ry="7.5" fill="url(#chipIvory)"/>
+            <ellipse cx="50" cy="39" rx="38" ry="7.5" fill="url(#chipIvory)"/>
+            <ellipse cx="50" cy="39" rx="30" ry="6" fill="none" stroke="#9a1a2a" stroke-width="0.7" opacity="0.65"/>
+            <ellipse cx="50" cy="39" rx="38" ry="7.5" fill="none" stroke="#8b7434" stroke-width="0.5" opacity="0.6"/>
+            <text x="50" y="43" text-anchor="middle" font-family="Fraunces, serif" font-size="7" font-weight="900" fill="#9a1a2a" opacity="0.85">♠</text>
+          </svg>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ── STATS ── -->
+    <section class="stats" aria-label="Ключевые показатели">
+      <div class="stat">
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">Столы всегда живые</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5&thinsp;000+</div>
+        <div class="stat-label">Активных игроков</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5&nbsp;сек</div>
+        <div class="stat-label">Вход через Telegram</div>
+      </div>
+    </section>
+
+    <footer>18+ · Играйте ответственно</footer>
+
+  </div>
+
+</body>
+</html>
